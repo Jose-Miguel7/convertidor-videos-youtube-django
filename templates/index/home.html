@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <main class="main">
+        <div class="main-title">
+            <h1>Descarga Video y Audio de YouTube</h1>
+        </div>
+        <div class="main-description">
+            <span>Descarga vídeos de Youtube en MP3, MP4, 3GP,... y muchos más formatos</span>
+        </div>
+        <form class="search-container" action="{% url 'index:convert' %}" method="post">{% csrf_token %}
+            <div class="main-search">
+                <input type="text" class="main-search-input" placeholder="Busca o pega el enlace aquí" name="url">
+            </div>
+            <button type="submit" class="search-img-container">
+                <img src="{% static 'images/icon-arrow.svg' %}" alt="" class="search-img">
+            </button>
+        </form>
+        <div class="search-description">
+            <span>Al utilizar nuestro servicio, usted acepta nuestros&nbsp;</span><a href="{% url 'index:terminos' %}">Términos
+            de uso</a>
+        </div>
+    </main>
+
+
+    {% if title %}
+        <section class="results">
+            <div class="img-result-container">
+                <img src="{{ thumb }}" alt="" class="img-result">
+
+                <div class="results-title">{{ title }}</div>
+                <div class="results-comment">Vistas: {{ views }}</div>
+                <div class="results-comment">Duración: {{ duration }} min</div>
+                {% if likes %}
+                    <div class="results-comment">Me gusta: {{ likes }}</div>
+                {% endif %}
+            </div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Resolución</th>
+                        <th>Tamaño Archivo</th>
+                        <th>Extensión</th>
+                        <th>Acción</th>
+                    </tr>
+                    {% for stream in streams %}
+                        <tr class="row-tr">
+                            <td>{{ stream.resolution }}</td>
+                            <td>{{ stream.filesize }}</td>
+                            <td>{{ stream.extension }}</td>
+                            <td><a href="{{ stream.video_url }}">Descargar</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="comment1">
+        <div class="comment1-img-container">
+            <img src="{% static 'images/yt.png' %}" alt="" class="comment1-img">
+        </div>
+        <div class="comment1-description-container">
+            <h2>Descargador de videos de YouTube</h2>
+            <p>Y2mate le permite convertir y descargar videos de YouTube, Facebook, Video, Dailymotion, Youku, etc. a
+                Mp3,
+                Mp4 en calidad HD. Y2mate admite la descarga de todos los formatos de video, como: MP4, M4V, 3GP, WMV,
+                FLV,
+                MO, MP3, WEBM, etc. Puede descargar fácilmente miles de videos de YouTube y otros sitios web de forma
+                gratuita.</p>
+        </div>
+    </section>
+
+    <section class="comment3">
+        <div class="comment3-description-container">
+            <img src="{% static 'images/logo.svg' %}" alt="" class="comment3-img">
+            <h2 class="comment3-title">Descargador de videos de YouTube</h2>
+            <p class="comment3-comment">Y2mate le permite convertir y descargar videos de YouTube, Facebook, Video,
+                Dailymotion, Youku, etc. a Mp3,
+                Mp4 en calidad HD. Y2mate admite la descarga de todos los formatos de video, como: MP4, M4V, 3GP, WMV,
+                FLV,
+                MO, MP3, WEBM, etc. Puede descargar fácilmente miles de videos de YouTube y otros sitios web de forma
+                gratuita.</p>
+        </div>
+        <div class="comment3-description-container">
+            <img src="{% static 'images/logo.svg' %}" alt="" class="comment3-img">
+            <h2 class="comment3-title">Descargador de videos de YouTube</h2>
+            <p class="comment3-comment">Y2mate le permite convertir y descargar videos de YouTube, Facebook, Video,
+                Dailymotion, Youku, etc. a Mp3,
+                Mp4 en calidad HD. Y2mate admite la descarga de todos los formatos de video, como: MP4, M4V, 3GP, WMV,
+                FLV,
+                MO, MP3, WEBM, etc. Puede descargar fácilmente miles de videos de YouTube y otros sitios web de forma
+                gratuita.</p>
+        </div>
+        <div class="comment3-description-container">
+            <img src="{% static 'images/logo.svg' %}" alt="" class="comment3-img">
+            <h2 class="comment3-title">Descargador de videos de YouTube</h2>
+            <p class="comment3-comment">Y2mate le permite convertir y descargar videos de YouTube, Facebook, Video,
+                Dailymotion, Youku, etc. a Mp3,
+                Mp4 en calidad HD. Y2mate admite la descarga de todos los formatos de video, como: MP4, M4V, 3GP, WMV,
+                FLV,
+                MO, MP3, WEBM, etc. Puede descargar fácilmente miles de videos de YouTube y otros sitios web de forma
+                gratuita.</p>
+        </div>
+    </section>
+
+    <section class="comment2">
+        <div class="comment2-description-container">
+            <h2>Instrucciones</h2>
+            <ul>
+                <li>1. Busque por nombre o pegue directamente el enlace del video que desea convertir</li>
+                <li>2. Haga clic en el botón "Iniciar" para comenzar el proceso de conversión</li>
+                <li>3. Seleccione el formato de video/audio que desea descargar, luego haga clic en el botón "Descargar"
+                </li>
+            </ul>
+        </div>
+        <div class="comment2-description-container">
+            <h2>Características</h2>
+            <ul>
+                <li class="list-style">Busque por nombre o pegue directamente el enlace del video que desea convertir
+                </li>
+                <li class="list-style">Haga clic en el botón "Iniciar" para comenzar el proceso de conversión</li>
+                <li class="list-style">Seleccione el formato de video/audio que desea descargar, luego haga clic en el
+                    botón
+                    "Descargar"
+                </li>
+            </ul>
+        </div>
+    </section>
+
+{% endblock %}

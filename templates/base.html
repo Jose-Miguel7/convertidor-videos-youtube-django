@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga Tu Video</title>
+    {% block css %}
+
+    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+
+<nav class="nav">
+    <img src="{% static 'images/logo.svg' %}" alt="">
+
+    <div class="nav-menu"></div>
+
+    <div class="nav-items-container">
+        <ul class="nav-items">
+            <li class="nav-item"><a href="{% url 'index:home' %}">Convertidor</a></li>
+            <li class="nav-item"><a href="{% url 'index:api' %}">API</a></li>
+            <li class="nav-item"><a href="">Precios</a></li>
+
+            <div class="nav-items-container nav-links">
+                <ul class="nav-items">
+                    <li class="nav-login-item"><a href="{% url 'index:login' %}">Iniciar Sesión</a></li>
+                    <li class="nav-item nav-register-item"><a href="{% url 'index:register' %}">Registrarse</a></li>
+                </ul>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+
+{% block content %}
+
+{% endblock %}
+
+<footer class="footer">
+    <div class="copy">Copyright © 2023 DescargaTuVideo</div>
+    <div class="footer-items-container">
+        <ul class="footer-items">
+            <li class="footer-item"><a href="{% url 'index:terminos' %}">Términos y Condiciones</a></li>
+            <li class="footer-item"><a href="">Contácto</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script src="{% static 'index.js' %}"></script>
+
+{% block script %}
+
+{% endblock %}
+</body>
+</html>

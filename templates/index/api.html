@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="{% static 'prism.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<main class="main-api">
+    <div class="container-main">
+        <h1>Documentación API</h1>
+        <h2 class="subtitle">Autenticación</h2>
+        <p class="api-comment">Por seguridad, debes enviar el access token por header cada vez que realices llamadas a
+            la API.</p>
+        <div class="table-container table-code">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Header</th>
+                    <th>Valor</th>
+                </tr>
+                <tr class="row-tr">
+                    <td>Authorization</td>
+                    <td>Bearer $API_TOKEN</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="table-comment">El API_TOKEN se asignará al momento de <a href="#">registrarse</a> en la página</p>
+        </div>
+
+        <h2 class="subtitle">Obtener información y Links de descarga de un Video</h2>
+        <p class="api-comment">Por seguridad, debes enviar el access token por header cada vez que realices llamadas a
+            la API.</p>
+        <p class="api-comment">Request</p>
+        <div class="code-container">
+            <pre class="pre-code"><code class="language-js">curl -X GET -H 'Authorization: Bearer $API_TOKEN' https://api.descargatuvideo.cl/convertir?query=$QUERY</code></pre>
+        </div>
+        <p class="api-comment">Parámetros</p>
+
+        <div class="table-container table-code">
+            <table>
+                <tbody>
+                <tr class="row-tr">
+                    <td>query</td>
+                    <td><b class="b">Requerido.</b> Es el enlace del video que se quiere obtener la información.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="api-comment">Response</p>
+        <pre class="pre-code"><code class="language-json">{
+    "title": "Título del video",
+    "likes": 12301,  // Número de likes que tiene el video
+    "duration": 4.13,  // Duración en minutos del video
+    "formats": [
+        {
+            "resolution": "1950x360"
+        },
+        {
+            "resolution": "1950x360"
+        },
+        {
+            "resolution": "1950x360"
+        }
+    ]
+}</code></pre>
+
+    </div>
+</main>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'prism.js' %}"></script>
+{% endblock %}
