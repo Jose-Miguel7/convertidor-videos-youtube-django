@@ -17,8 +17,8 @@ jobs:
         steps:
             - name: Give permission to execute
               run: |
-                sudo chown -R user_test:user_test /home/user_test
-                sudo chmod -R u+rwx /home/user_test
+                chown -R user_test:user_test /home/user_test
+                chmod -R u+rwx /home/user_test
             - name: Checkout
               uses: actions/checkout@v2
             
