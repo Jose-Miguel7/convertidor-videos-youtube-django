@@ -13,6 +13,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Se copian los archivos de la aplicación al directorio de trabajo
 COPY . .
 
+# Se ejecutan las migraciones
+RUN python manage.py migrate
+
+# Se crea un superusuario
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', '123') if not User.objects.filter(username='admin').exists() else None" | python manage.py shell
+
 # Se expone el puerto 5000
 EXPOSE 5000
 
