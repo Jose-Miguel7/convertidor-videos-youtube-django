@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     os.environ.setdefault(
-        "DJANGO_SETTINGS_MODULE", "PRY_20230204_YOUTUBE_CONVERTER.settings"
+        "DJANGO_SETTINGS_MODULE", "descarga_tu_video.settings"
     )
     try:
         from django.core.management import execute_from_command_line

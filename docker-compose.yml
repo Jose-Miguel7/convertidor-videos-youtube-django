@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  django_app:
+    build: .
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    environment:
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+  
+  nginx:
+    image: nginx:1.19-alpine
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - django_app
+  
+  db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
