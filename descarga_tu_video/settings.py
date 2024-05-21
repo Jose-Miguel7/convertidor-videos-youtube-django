@@ -3,10 +3,10 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-mk#vg=ttn=+m(9m__mk1wlwijx-xyyb5smc!)0jw4j4k8p8dfr"
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://200.35.157.167:8083']
 
 
 INSTALLED_APPS = [
