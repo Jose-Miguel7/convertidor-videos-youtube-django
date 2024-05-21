@@ -1,3 +1,6 @@
+asgiref==3.8.1
 Django==4.1.6
+gunicorn==22.0.0
+packaging==24.0
+sqlparse==0.5.0
 youtube-dl==2021.12.17
-gunicorn
