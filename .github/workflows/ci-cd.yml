@@ -1,32 +1,41 @@
 name: CI CD Django
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    build:
+  deploy:
+    runs-on: self-hosted
 
-        runs-on: self-hosted
-        strategy:
-            max-parallel: 4
-            matrix:
-                python-version: [3.10.12]
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.10.12]
 
-        steps:
-            - name: Give permission to execute
-              run: |
-                chown -R user_test:user_test /home/user_test
-                chmod -R u+rwx /home/user_test
-            - name: Checkout
-              uses: actions/checkout@v2
-            
-            - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v2
-              with:
-                  python-version: ${{ matrix.python-version }}
-            
-            - name: Set docker compose config
-              run: |
-                docker-compose up -d --build
+    steps:
+      - name: Clean up __pycache__ directories
+        run: sudo find /home/ubuntu/actions-runner/_work/convertidor-videos-youtube-django/convertidor-videos-youtube-django -type d -name '__pycache__' -exec rm -r {} +
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Run migrations
+        run: |
+          source venv/bin/activate
+          python manage.py migrate
+
+      - name: Reset supervisor
+        run: sudo service supervisor restart
