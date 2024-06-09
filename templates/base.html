@@ -14,7 +14,9 @@
 <body>
 
 <nav class="nav">
-    <img src="{% static 'images/logo.svg' %}" alt="">
+    <a href="/">
+        <img src="{% static 'images/logo.svg' %}" alt="">
+    </a>
 
     <div class="nav-menu"></div>
 
@@ -22,13 +24,12 @@
         <ul class="nav-items">
             <li class="nav-item"><a href="{% url 'index:home' %}">Convertidor</a></li>
             <li class="nav-item"><a href="{% url 'index:api' %}">API</a></li>
-            <li class="nav-item"><a href="">Precios</a></li>
 
             <div class="nav-items-container nav-links">
-                <ul class="nav-items">
+                <!-- <ul class="nav-items">
                     <li class="nav-login-item"><a href="{% url 'index:login' %}">Iniciar Sesión</a></li>
                     <li class="nav-item nav-register-item"><a href="{% url 'index:register' %}">Registrarse</a></li>
-                </ul>
+                </ul> -->
             </div>
         </ul>
     </div>
@@ -40,11 +41,10 @@
 {% endblock %}
 
 <footer class="footer">
-    <div class="copy">Copyright © 2023 DescargaTuVideo</div>
+    <div class="copy">Copyright © 2024 DescargaTuVideo</div>
     <div class="footer-items-container">
         <ul class="footer-items">
             <li class="footer-item"><a href="{% url 'index:terminos' %}">Términos y Condiciones</a></li>
-            <li class="footer-item"><a href="">Contácto</a></li>
         </ul>
     </div>
 </footer>
