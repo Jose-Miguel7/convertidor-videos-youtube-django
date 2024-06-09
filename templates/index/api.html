@@ -25,7 +25,7 @@
                 </tr>
                 <tr class="row-tr">
                     <td>Authorization</td>
-                    <td>Bearer $API_TOKEN</td>
+                    <td>Token $API_TOKEN</td>
                 </tr>
                 </tbody>
             </table>
@@ -37,7 +37,7 @@
             la API.</p>
         <p class="api-comment">Request</p>
         <div class="code-container">
-            <pre class="pre-code"><code class="language-js">curl -X GET -H 'Authorization: Bearer $API_TOKEN' https://api.descargatuvideo.cl/convertir?query=$QUERY</code></pre>
+            <pre class="pre-code"><code class="language-js">curl -X GET -H 'Authorization: Token $API_TOKEN' https://api.descargatuvideo.cl/convertir?query=$QUERY</code></pre>
         </div>
         <p class="api-comment">Parámetros</p>
 
@@ -54,20 +54,36 @@
 
         <p class="api-comment">Response</p>
         <pre class="pre-code"><code class="language-json">{
-    "title": "Título del video",
-    "likes": 12301,  // Número de likes que tiene el video
-    "duration": 4.13,  // Duración en minutos del video
-    "formats": [
-        {
-            "resolution": "1950x360"
-        },
-        {
-            "resolution": "1950x360"
-        },
-        {
-            "resolution": "1950x360"
-        }
-    ]
+"title": "Título del video",
+"description": "Descripción del video",
+"thumbnail": "https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg",
+"channel_id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"channel_url": "https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw",
+"publish_date": "2020-01-01T00:00:00Z",
+"views": 1500000,
+"duration": 4.13,
+"keywords": ["keyword1", "keyword2", "keyword3"],
+"author": "Nombre del Canal",
+"formats": [
+    {
+        "resolution": "720p",
+        "extension": "mp4",
+        "filesize": "50.5 mb",
+        "video_url": "https://..."
+    },
+    {
+        "resolution": "1080p",
+        "extension": "mp4",
+        "filesize": "30.2 mb",
+        "video_url": "https://..."
+    },
+    {
+        "resolution": "Audio",
+        "extension": "webm",
+        "filesize": "5.5 mb",
+        "video_url": "https://..."
+    }
+]
 }</code></pre>
 
     </div>

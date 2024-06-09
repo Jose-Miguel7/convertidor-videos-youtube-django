@@ -46,7 +46,6 @@ class GetVideoView(View):
     
         try:
             video_audio_streams = []
-            # Filter streams by both progressive and adaptive to get more formats
             streams = yt.streams.filter(progressive=True).all() + yt.streams.filter(adaptive=True).all()
             for stream in streams:
                 file_size = stream.filesize
